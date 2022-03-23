@@ -1,0 +1,7 @@
+---
+- name: update all packages 
+  hosts: localhost
+  tasks:
+     - name: update packages
+       yum:
+         state: latest 
