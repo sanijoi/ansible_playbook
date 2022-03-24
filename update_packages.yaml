@@ -2,7 +2,28 @@
 - name: update all packages 
   hosts: localhost
   tasks:
-     - name: update packages
-       yum:
-         name: '*'
-         state: latest 
+    - name: update packages
+      yum:
+        name: '*'
+        state: latest 
+
+    - name: install vim, tree, wget, curl
+      yum:
+        name: 
+          - vim
+          - tree
+          - wget
+          - curl
+        state: latest
+
+    - name: Create a file
+      file:
+        path: /tmp/file1_ansible
+        state: touch
+
+    - name: text in file
+      blockinfile:
+        path: /tmp/file1_ansible
+        block: |
+          - this is line one
+          - this is line two
