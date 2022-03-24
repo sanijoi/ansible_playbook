@@ -1,6 +1,6 @@
 ---
 - name: update all packages 
-  hosts: localhost
+  hosts: managed_hosts
   tasks:
     - name: update packages
       yum:
