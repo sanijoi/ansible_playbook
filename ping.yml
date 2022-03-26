@@ -1,0 +1,9 @@
+---
+- name: ping check
+  hosts: all
+  gather_facts: yes
+  tasks:
+    - name: ping
+      ping:
+      when: ansible_distribution == "CentOS"
+  
