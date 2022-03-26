@@ -7,13 +7,13 @@
         name: '*'
         state: latest 
 
-    - name: install vim, tree, wget, curl
+    - name: install vim, tree, wget, 
       yum:
         name: 
           - vim
           - tree
           - wget
-          - curl
+
         state: latest
 
     - name: Create a file
