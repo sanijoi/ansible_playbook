@@ -1,17 +1,32 @@
 ---
 - name: install nginx
-  hosts: host1
-  gather_facts: no
+  hosts: all
+  gather_facts: yes
   tasks: 
-    - name: install epel-release
+    - name: apt update
+      apt: 
+        name: apt 
+        state: latest
+      when: ansible_distribution == "Ubuntu"
+
+    - name: install nginx to ubuntu
+      apt:
+        name: nginx
+        state: latest
+      when: ansible_distribution == "Ubuntu"
+
+
+    - name: epel-repo for CentOS
       yum: 
         name: epel-release
         state: latest
+      when: ansible_distribution == "CentOS"
 
-    - name: nginx latest
-      yum:
+    - name: install nginx CentOS
+      yum: 
         name: nginx
         state: latest
+      when: ansible_distribution == "CentOS"    
 
     - name: start service nginx, if it's not started
       systemd:
