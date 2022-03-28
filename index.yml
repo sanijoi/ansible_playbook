@@ -1,0 +1,11 @@
+---
+- name: index nginx
+  hosts: host1
+  tasks: 
+    - name: file
+      copy:
+        src: /root/git-repos/ansible_playbook/index.html
+        dest: /usr/share/nginx/html/index.html
+        owner: nginx
+        group: nginx
+        mode: '664'
