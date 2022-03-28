@@ -1,6 +1,6 @@
 ---
 - name: index nginx
-  hosts: host1
+  hosts: all
   tasks: 
     - name: file
       copy:
@@ -9,3 +9,16 @@
         owner: nginx
         group: nginx
         mode: '664'
+      when: ansible_distribution == "CentOS"  
+
+    - name: file
+      copy:
+        src: /root/git-repos/ansible_playbook/index.html
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '777'
+      when: ansible_distribution == "Ubuntu"  
+
+    - name: reboot all servers
+      reboot:
