@@ -1,6 +1,8 @@
 ---
 - name:
   hosts: group1
+  vars: 
+    my_veriable: "yes"
   gather_facts: yes
   tasks:
     - name: install packages CentOS
@@ -11,7 +13,7 @@
           - wget
           - tree
         state: latest
-      when: ansible_pkg_mgr == "yum"
+      when: ansible_pkg_mgr == "yum" and my_veriable == "yes"
 
     - name: install packages ubuntu
       apt:
@@ -21,4 +23,4 @@
          - wget
          - tree
         state: latest
-      when: ansible_pkg_mgr  == "apt"
+      when: ansible_pkg_mgr  == "apt" and ansible_distribution == "Ubuntu"
