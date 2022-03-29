@@ -1,0 +1,24 @@
+---
+- name:
+  hosts: group1
+  gather_facts: yes
+  tasks:
+    - name: install packages CentOS
+      yum:
+        name:
+          - vim
+          - curl
+          - wget
+          - tree
+        state: latest
+      when: ansible_pkg_mgr == "yum"
+
+    - name: install packages ubuntu
+      apt:
+        name:
+         - vim
+         - curl
+         - wget
+         - tree
+        state: latest
+      when: ansible_pkg_mgr  == "apt"

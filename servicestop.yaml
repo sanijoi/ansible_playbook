@@ -1,0 +1,18 @@
+---
+- name: stop service on both servers
+  hosts: all
+  gather_facts: yes 
+  tasks:
+    - name: stop apache on ubuntu
+      systemd:
+        name: apache2
+        state: stopped
+      when: ansible_distribution == "Ubuntu"
+
+
+    - name: stop apache on CentOS 
+      systemd: 
+        name: httpd 
+        state: stopped
+      when: ansible_distribution == "CentOS" 
+

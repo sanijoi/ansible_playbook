@@ -1,0 +1,19 @@
+---
+- name:
+  hosts: all
+  tasks:
+    - name: remove apache on ubuntu
+      apt:
+        name: apache2
+        state: absent
+      when: ansible_distribution == "Ubuntu"
+
+    - name: remove apache on CentOS
+      yum: 
+        name: httpd
+        state: absent
+      when: ansible_distribution == "CentOS"
+
+    - name:
+      file:
+        path: /
